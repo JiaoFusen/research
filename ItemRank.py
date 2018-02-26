@@ -21,7 +21,7 @@ class ItemRank(object):
     # 生成图模型
     def generate_graph(self):
         # node = Node()
-        print("******生成图模型中......")
+        # print("******生成图模型中......")
         self.movie_names = list(set(self.data[:, 1].astype(int)))
         self.user_names = list(set(self.data[:, 0].astype(int)))
         # print(self.movie_names.index(65567))
