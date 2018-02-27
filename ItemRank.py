@@ -25,7 +25,7 @@ class ItemRank(object):
         # print("******生成图模型中......")
         self.movie_names = list(set(self.data[:, 1].astype(int)))
         # self.movie_names = set(self.data.movieId.tolist())
-        print(self.movie_names)
+        # print(self.movie_names)
         self.user_names = list(set(self.data[:, 0].astype(int)))
         # print(self.user_names)
         # self.user_names = set(self.data.userId.tolist())
@@ -46,7 +46,6 @@ class ItemRank(object):
 
     # 根据图模型生成相关系数矩阵
     def generate_coef_from_graph(self):
-        print("******此刻正在计算相关系数矩阵......")
         correlation_matrix = np.zeros((len(self.movie_names), len(self.movie_names)))
         for movie_name in self.movie_nodes.keys():
             for user in self.movie_nodes[movie_name].neighbours:
@@ -59,12 +58,10 @@ class ItemRank(object):
 
     # itemrank公式
     def item_rank(self, alpha, ir, d):
-        print("******计算itemrank中......")
         return alpha * np.dot(self.correlation_matrix, ir) + (1 - alpha) * d
 
     # 生成评分向量
     def generate_d(self, user_name):
-        print("******生成评分向量中中......")
         d = np.zeros(len(self.movie_names))
         for i in range(len(self.data[:, 0])):
             if self.data[i, 0].astype(int) == user_name:
